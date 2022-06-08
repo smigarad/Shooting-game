@@ -2,7 +2,6 @@
 
 int main()
 {
-
     Position default_position = {40 , WINDOWS_HEIGHT /2 };
     Window* window = new Window("Shooting game");
     Player* player = new Player (default_position,window->renderer, "spaceship2.png");
@@ -24,8 +23,11 @@ int main()
 
     for(unsigned int i = 0; i < MAX_BULLETS; ++i)
     {
-	bullets.emplace_back(new Bullet({300,300},window->renderer,"bullet2.png"));
+	bullets.emplace_back(new Bullet({1000,1000},window->renderer,"bullet2.png"));
     }
+
+
+    PlayerScore* player_score = new PlayerScore({100,100},window->renderer,window->font);
     int bullets_counter_enemy[4];
     bool down [4] = {1,1,1,1};
     float dt;
@@ -38,6 +40,7 @@ int main()
     SDL_Event event;
     bool controls[7] = {};
     bool hit=0;
+    bool hit_enemy=0;
     while (run == 1)
     {
         auto startTime = chrono::high_resolution_clock::now();
@@ -77,7 +80,7 @@ int main()
             else player->velocity.y =0;
             if (controls[Movement::KeyShoot]) shot = 1;
             else shot =0;
-            if (controls[Movement::KeyRestart]) 
+            if (controls[Movement::KeyRestart])                                         //restart 
             {
                 player->position = default_position;
                 for(auto s: bullets) s->position = {0,-100};
@@ -121,9 +124,9 @@ int main()
         if (!lvl)
         {
             if (enemies[0]->position.y > WINDOWS_HEIGHT/2 + 160) down[0] =0;
-            if (enemies[1]->position.y > WINDOWS_HEIGHT/2+200) down[1] =0;
-            if (enemies[2]->position.y > WINDOWS_HEIGHT/2+220) down[2] =0;
-            if (enemies[3]->position.y > WINDOWS_HEIGHT/2+200) down[3] =0;
+            if (enemies[1]->position.y > WINDOWS_HEIGHT/2+ 200) down[1] =0;
+            if (enemies[2]->position.y > WINDOWS_HEIGHT/2+ 220) down[2] =0;
+            if (enemies[3]->position.y > WINDOWS_HEIGHT/2+ 200) down[3] =0;
             
             
             if (down[0]) enemies[0]->velocity.y =ENEMY_SPEED+0.1;
@@ -223,14 +226,17 @@ int main()
             shot_enemy[2]=1;
         }
 
-        if (delay[3] >=500)
+        if (delay[3] >=4000)
         {
             delay[3]=0;
             shot_enemy[3]=1;
         }
         hit=0;
+        hit_enemy =0;
         uint pom1;
         uint pom2;
+        uint pom3;
+        uint pom4;
         for(uint i=0; i<4; i++)
         {
             for(uint j =0; j<20; j++)
@@ -240,19 +246,41 @@ int main()
                 {
                     hit =1;
                     player->health--;    
+                    player_score->Sub();
                     printf("xd%d %d",i,j);
                     pom1 =i;
                     pom2 =j;
+                    bullets_enemy[i][j]->position.x=-100;
                     
                 }
-            
             }
         }
+        for(uint i=0; i<4; i++)
+        {
+            for(uint j =0; j<20; j++)
+            {
+                //if (i == pom3 && j == pom4) break;
+                if (enemies[i]->Collision(bullets[j]->position)&& !hit_enemy)
+                {
+                    hit_enemy=1;
+                    enemies[i]->health--;
+                    pom3 =i;
+                    pom4 = j;
+                }
+            }
+        }
+
         if (player->health ==0) 
         {
             SDL_Delay(1000);
             run =0;
         }
+        
+        for(auto e: enemies)
+        {
+            if( e->health ==0) e->position.x = -100;
+        }
+        
         for (auto s : bullets_enemy[0]) s->Draw();
         for (auto s : bullets_enemy[1]) s->Draw();
         for (auto s : bullets_enemy[2]) s->Draw();
@@ -260,7 +288,7 @@ int main()
         for (auto s: bullets) s->Draw();
         for (auto e: enemies) e->Draw();
         player->Draw();
-        
+        player_score->Draw();
         window->Display();
         auto stopTime = chrono::high_resolution_clock::now();
 	    dt = chrono::duration<float, chrono::milliseconds::period>(stopTime - startTime).count();
@@ -281,8 +309,8 @@ int main()
             bullets_enemy[i].clear();
         }
     }
-        delete[] bullets_enemy;
+    delete[] bullets_enemy;
     delete window;
-
+    delete player_score;
     return 0;
 }

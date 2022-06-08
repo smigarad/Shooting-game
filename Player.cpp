@@ -42,20 +42,24 @@ void Player::Background()
 bool Player::Collision(Position bullet)
 {
     int BULLET_HEIGHT = 27;
-    int bullet_left = bullet.x;
-    int bullet_right = bullet.x + BULLET_HEIGHT;
-    int bullet_top= bullet.y;
-    int bullet_bottom = bullet.y + BULLET_HEIGHT;
+    
+    Position bullet_center_position = {bullet.x + BULLET_HEIGHT/2, bullet.y + BULLET_HEIGHT/2};
 
     int player_left = position.x;
     int player_right = position.x + PLAYER_WIDTH;
     int player_top = position.y;
     int player_bottom = position.y + PLAYER_HEIGHT;
+    
 
-    if (bullet_bottom <= player_bottom && bullet_top >= player_top && (bullet_right >= player_left && bullet_left <= player_right)) return 1;
+
+    if(bullet_center_position.x > player_left && bullet_center_position.x < player_right 
+    && bullet_center_position.y > player_top && bullet_center_position.y < player_bottom) return 1;
+    
+    //if (bullet_bottom <= player_bottom && bullet_top >= player_top && (bullet_right >= player_left && bullet_left <= player_right)) return 1;
     //if(bullet_bottom >= player_top && bullet_left ==player_right) return 1;
     return 0;
 }
+
 Player::~Player()
 {
     SDL_DestroyTexture(texture);

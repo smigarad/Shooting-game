@@ -24,5 +24,6 @@ public:
     Window(const char* name);
     void Display();
     void background();
+    TTF_Font* font = TTF_OpenFont("DejaVuSans.ttf", 40);
     ~Window();
 };

@@ -7,6 +7,7 @@
 #include "Bullet.hpp"
 #include <vector>
 #include <chrono>
-#include "Functions.hpp"
-#include "PlayerScore.hpp"
+#pragma once
 using namespace std;
+
+void Fill_Enemies(vector <Player*> enemies,Window* window);
