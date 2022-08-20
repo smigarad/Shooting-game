@@ -1,0 +1,3 @@
+/home/radek/Programming/Shooter/build/CMakeFiles/Shooter.dir
+/home/radek/Programming/Shooter/build/CMakeFiles/edit_cache.dir
+/home/radek/Programming/Shooter/build/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,1 @@
+/usr/bin/g++ -g -rdynamic CMakeFiles/Shooter.dir/src/main.cpp.o CMakeFiles/Shooter.dir/src/Bullet.cpp.o CMakeFiles/Shooter.dir/src/Funstions.cpp.o CMakeFiles/Shooter.dir/src/Player.cpp.o CMakeFiles/Shooter.dir/src/PlayerScore.cpp.o CMakeFiles/Shooter.dir/src/Window.cpp.o -o Shooter  -lSDL2 -lSDL2_ttf -lSDL2 -lSDL2_image -lSDL2 -lm -lSDL2_ttf -lSDL2_image -lm 

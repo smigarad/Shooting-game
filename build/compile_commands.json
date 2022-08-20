@@ -1,0 +1,32 @@
+[
+{
+  "directory": "/home/radek/Programming/Shooter/build",
+  "command": "/usr/bin/g++  -I/usr/include/SDL2 -I/include -g -o CMakeFiles/Shooter.dir/src/main.cpp.o -c /home/radek/Programming/Shooter/src/main.cpp",
+  "file": "/home/radek/Programming/Shooter/src/main.cpp"
+},
+{
+  "directory": "/home/radek/Programming/Shooter/build",
+  "command": "/usr/bin/g++  -I/usr/include/SDL2 -I/include -g -o CMakeFiles/Shooter.dir/src/Bullet.cpp.o -c /home/radek/Programming/Shooter/src/Bullet.cpp",
+  "file": "/home/radek/Programming/Shooter/src/Bullet.cpp"
+},
+{
+  "directory": "/home/radek/Programming/Shooter/build",
+  "command": "/usr/bin/g++  -I/usr/include/SDL2 -I/include -g -o CMakeFiles/Shooter.dir/src/Funstions.cpp.o -c /home/radek/Programming/Shooter/src/Funstions.cpp",
+  "file": "/home/radek/Programming/Shooter/src/Funstions.cpp"
+},
+{
+  "directory": "/home/radek/Programming/Shooter/build",
+  "command": "/usr/bin/g++  -I/usr/include/SDL2 -I/include -g -o CMakeFiles/Shooter.dir/src/Player.cpp.o -c /home/radek/Programming/Shooter/src/Player.cpp",
+  "file": "/home/radek/Programming/Shooter/src/Player.cpp"
+},
+{
+  "directory": "/home/radek/Programming/Shooter/build",
+  "command": "/usr/bin/g++  -I/usr/include/SDL2 -I/include -g -o CMakeFiles/Shooter.dir/src/PlayerScore.cpp.o -c /home/radek/Programming/Shooter/src/PlayerScore.cpp",
+  "file": "/home/radek/Programming/Shooter/src/PlayerScore.cpp"
+},
+{
+  "directory": "/home/radek/Programming/Shooter/build",
+  "command": "/usr/bin/g++  -I/usr/include/SDL2 -I/include -g -o CMakeFiles/Shooter.dir/src/Window.cpp.o -c /home/radek/Programming/Shooter/src/Window.cpp",
+  "file": "/home/radek/Programming/Shooter/src/Window.cpp"
+}
+]
